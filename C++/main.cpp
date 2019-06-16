@@ -1,27 +1,37 @@
 #include <iostream>
 #include "linkedlist/LinkedList.h"
 #include <string>
+#include <stdexcept>
 
 using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-
-    int index;
+    int index = 0;
     LinkedList<int> listInt;
     LinkedList<string> listStr;
-    index = listInt.append(1);
-    index = listInt.append(2);
-    index = listStr.append("xiaowang");
-    index = listStr.append("zhangsan");
-    index = listStr.append("xiaowang");
+    listInt.append(1);
+    listInt.append(2);
+    listStr.append("xiaowang");
+    listStr.append("zhangsan");
+    listStr.append("xiaowang");
     index = listStr.append("zhangsan");
     listInt.insert(0);
     cout << "index: " << index << endl;
     cout << "is empty? " << boolalpha << listInt.isEmpty() << endl;
     cout << "is empty? " << boolalpha << listStr.isEmpty() << endl;
-    bool isOK = listInt.update(10,5);
+    listInt.update(10,5);
     listInt.forEach();
+    listStr.forEach();
+    listStr.remove(2);
+    listStr.forEach();
+    int i;
+    try {
+        i = listInt.get(20);
+    } catch (logic_error & e) {
+        cout << e.what() << endl;
+    }
+
+    listStr.clear();
     listStr.forEach();
     return 0;
 }
