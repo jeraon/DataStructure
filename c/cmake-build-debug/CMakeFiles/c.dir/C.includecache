@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jiayongqiang/workspace/c/linkedlist/linkedlist.c
+stdio.h
+-
+stdlib.h
+-
+linkedlist.h
+/home/jiayongqiang/workspace/c/linkedlist/linkedlist.h
+
+/home/jiayongqiang/workspace/c/linkedlist/linkedlist.h
+stdio.h
+-
+
+/home/jiayongqiang/workspace/c/main.c
+stdio.h
+-
+linkedlist/linkedlist.h
+/home/jiayongqiang/workspace/c/linkedlist/linkedlist.h
+
