@@ -1,16 +1,41 @@
-package src.linkedlist;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Test {
+    
+    private static List<Integer> myList = new LinkedList<>();
     public static void main(String[] args) {
-        MyLinkedList<Integer> myLinkedList = new MyLinkedList<>();
-        myLinkedList.insertToHead(4);
-        myLinkedList.insertToHead(10);
-        myLinkedList.appendNode(9);
-        System.out.println(myLinkedList);
-        myLinkedList.deleteNode(9);
-        System.out.println(myLinkedList);
-        boolean exist = myLinkedList.contain(90);
-        boolean empty = myLinkedList.empty();
-        System.out.println("exist: " + exist + ", empty: " + empty);
+        // singleListTest();
+        doubleListTest();
+    }
+
+    private static void doubleListTest() {
+        DoubleLinkedList<String> list = new DoubleLinkedList<>();
+        list.append("Monday");
+        list.append("Tuesday");
+        list.append("Wednesday");
+        list.append("Thursday");
+        System.out.println(list);
+        list.add(0, "Sunday");
+        System.out.println(list);
+        list.remove("Wednesday");
+        System.err.println(list);
+    }
+
+    private static void singleListTest() {
+        
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.append("you");
+        list.append("i");
+        list.append("she");
+        list.append("he");
+        System.out.println(list);
+        list.delete("you");
+        list.delete(2);
+        System.out.println(list);
+        list.add("me", 1);
+        System.out.println(list);
     }
 }

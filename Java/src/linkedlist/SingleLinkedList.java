@@ -1,4 +1,28 @@
-package datastructure;
+/**
+ * 单链表
+ * 
+ * 0.查找给定元素的前一个元素对应节点：findPreNodeByEle(T t)
+ *  Node<T> p = header;
+ *  while (p.next != null && !p.next.data.equals(t)) {
+ *      p = p.next;
+ *  }
+ *  
+ * 1.判空：isEmpty()
+ *  header->next == null;
+ * 
+ * 2.追加元素：append(T t)
+ *  lastNode->next = newNode;
+ * 
+ * 3.插入元素：add(int index, T t)
+ *  newNode.next = preCurNode.next;
+ *  preCurNode.next = newNode;
+ * 
+ * 4.删除元素： delete(T t)
+ *  pendingDelNode = preCurNode.next;
+ *  preCurNode.next = preCurNode.next.next;
+ *  pendingDelNode = null;
+ * 
+ */
 
 public class SingleLinkedList<T> {
 
@@ -52,14 +76,14 @@ public class SingleLinkedList<T> {
     // 删除第一次出现的给定的对象
     public boolean delete(T t) {
         // step1.找到该元素对应的节点
-        Node<T> preNode = findPreNodeByEle(t);
-        if (preNode != null) {
-            Node<T> cur = preNode.next;
-            if(cur == null) {
+        Node<T> preCurNode = findPreNodeByEle(t);
+        if (preCurNode != null) {
+            Node<T> pendingDelNode = preCurNode.next;
+            if(pendingDelNode == null) {
                 throw new IndexOutOfBoundsException();
             }
-            preNode.next = cur.next;
-            cur = null;
+            preCurNode.next = pendingDelNode.next;
+            pendingDelNode = null;
             size --;
             return true;
         }
@@ -68,12 +92,12 @@ public class SingleLinkedList<T> {
 
     // 删除给定索引位置的对象
     public T delete(int index) {
-        Node<T> preNode = findPreNodeByIndex(index);
-        if (preNode != null) {
-            Node<T> cur = preNode.next;
-            T t = cur.data;
-            preNode.next = cur.next;
-            cur = null;
+        Node<T> preCurNode = findPreNodeByIndex(index);
+        if (preCurNode != null) {
+            Node<T> pendingDelNode = preCurNode.next;
+            T t = pendingDelNode.data;
+            preCurNode.next = pendingDelNode.next;
+            pendingDelNode = null;
             size --;
             return t;
         }
@@ -81,7 +105,7 @@ public class SingleLinkedList<T> {
     }
 
     // 添加元素到表尾
-    public boolean add(T t) {
+    public boolean append(T t) {
         Node<T> node = new Node<T>();
         Node<T> last = findlastNode();
         last.next = node;
@@ -92,11 +116,11 @@ public class SingleLinkedList<T> {
 
     // 添加元素到指定位置
     public boolean add(T t, int index) {
-        Node<T> preNode = findPreNodeByIndex(index);
-        Node<T> node = new Node<>();
-        node.data = t;
-        node.next = preNode.next;
-        preNode.next = node;
+        Node<T> preCurNode = findPreNodeByIndex(index);
+        Node<T> newNode = new Node<>();
+        newNode.data = t;
+        newNode.next = preCurNode.next;
+        preCurNode.next = newNode;
         size ++;
         return true;
     }
